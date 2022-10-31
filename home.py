@@ -1,3 +1,5 @@
+# Pyrogrammers || GitHub.com/pyrogrammers || telegram.me/pyrogrammers 
+
 # importing required modules
 from os import environ
 import aiohttp
@@ -8,7 +10,7 @@ API_ID = environ.get('API_ID')
 API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
 SITE_URL = environ.get('SITE_URL')
-
+API_KEY = environ.get('API_KEY')
 # Creating pyrogram client
 app = Client(
     "multishortener",
@@ -34,12 +36,12 @@ async def start(event):
         f"Hello {event.chat.first_name},\n"
         "I am multi shortener bot, i can short links of any website that uses Adlinkfly API Response.\n\nJust send your link i will give you shortened link.")
 
-# getting url using regex and trying to call convert function that is defined above
+# Getting url using regex and trying to call convert function that is defined above
 @app.on_message(filters.regex(r'https?://[^\s]+') & filters.private)
 async def shortener(event):
     url = message.matches[0].group(0)
     try:
-        short_link = await convert(url)
-        await event.reply(f"Successfully generated your short link 👉 `{short_link}`,\n\n__Tap on link to copy it__")
+        short_url = await convert(url)
+        await event.reply(f"Successfully generated your short link 👉 `{short_url}`,\n\n__Tap on link to copy it__")
     except Exception as e:
         await message.reply(f"An error occurred: `{str(e)}`, contact @pyroowner for support.")
