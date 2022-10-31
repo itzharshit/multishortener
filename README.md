@@ -1,4 +1,4 @@
-# Group-chatting-bot
+# Multishortener-Bot
 
 A telegram bot that can short links of any website that use Adlinkfly API Response 
 
