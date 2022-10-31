@@ -11,7 +11,8 @@ API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
 SITE_URL = environ.get('SITE_URL')
 API_KEY = environ.get('API_KEY')
-# Creating pyrogram client
+
+# Creating pyrogram client(I think telethon would be better, anyway will use telethon in next project.)
 app = Client(
     "multishortener",
     bot_token=BOT_TOKEN,
