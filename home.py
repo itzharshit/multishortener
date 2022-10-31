@@ -52,3 +52,6 @@ async def shortener(event):
         await event.reply(f"Successfully generated your short link 👉 `{short_url}`,\n\n__Tap on link to copy it__")
     except Exception as e:
         await message.reply(f"An error occurred: `{str(e)}`, contact @pyroowner for support.")
+
+# Running client
+app.run()
