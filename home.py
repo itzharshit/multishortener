@@ -1,11 +1,11 @@
 # Pyrogrammers || GitHub.com/pyrogrammers || telegram.me/pyrogrammers 
 
-# importing required modules
+# Importing required modules
 from os import environ
 import aiohttp
 from pyrogram import Client, filters
 
-# defining global variables
+# Defining global variables
 API_ID = environ.get('API_ID')
 API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
@@ -30,7 +30,7 @@ async def convert(link):
             data = await response.json()
             return data["shortenedUrl"]
 
-# start message for welcome 
+# Start message for welcome 
 @app.on_message(filters.command('start') & filters.private)
 async def start(event):
     await event.send_message(
