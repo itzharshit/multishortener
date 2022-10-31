@@ -2,7 +2,7 @@
 
 # Importing required modules
 from os import environ
-import aiohttp
+import aiohttp, logging 
 from pyrogram import Client, filters
 
 # Defining global variables
@@ -11,6 +11,12 @@ API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
 SITE_URL = environ.get('SITE_URL')
 API_KEY = environ.get('API_KEY')
+
+# intialising logging
+logging.basicConfig(
+    level=logging.INFO, format="[%(levelname)s] %(asctime)s - %(message)s"
+)
+log = logging.getLogger("PYROGRAMMERS")
 
 # Creating pyrogram client(I think telethon would be better, anyway will use telethon in next project.)
 app = Client(
