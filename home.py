@@ -4,6 +4,7 @@
 from os import environ
 import aiohttp, logging 
 from pyrogram import Client, filters
+import pyshorteners
 
 # Defining global variables
 API_ID = environ.get('API_ID')
@@ -27,14 +28,7 @@ app = Client(
 )    
 
 # Defining function for shortening links
-async def convert(link):
-    url = f'{SITE_URL}/api'
-    params = {'api': API_KEY, 'url': link}
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, params=params, raise_for_status=True) as response:
-            data = await response.json()
-            return data["shortenedUrl"]
+s = pyshorteners.Shortener(api_key='API_KEY', user_id='USER_ID', domain='SITE_URL', group_id=12, type='int')
 
 # Start message for welcome 
 @app.on_message(filters.command('start') & filters.private)
@@ -43,12 +37,12 @@ async def start(bot, message):
         f"Hello {message.chat.first_name},\n"
         "I am multi shortener bot, i can short links of any website that uses Adlinkfly API Response.\n\nJust send your link i will give you shortened link.")
 
-# Getting url using regex and trying to call convert function that is defined above
+# Getting url using regex and trying to call the function that is defined above
 @app.on_message(filters.regex(r'https?://[^\s]+') & filters.private)
 async def shortener(bot, message):
     url = message.matches[0].group(0)
     try:
-        short_url = await convert(url)
+        short_url = s.adfly.short(url)
         await message.reply(f"Successfully generated your short link 👉 `{short_url}`,\n\n__Tap on link to copy it__")
     except Exception as e:
         await message.reply(f"An error occurred: `{str(e)}`, contact @pyroowner for support.")
