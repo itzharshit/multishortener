@@ -38,14 +38,14 @@ async def convert(link):
 
 # Start message for welcome 
 @app.on_message(filters.command('start') & filters.private)
-async def start(event):
+async def start(bot, event):
     await event.send_message(
         f"Hello {event.chat.first_name},\n"
         "I am multi shortener bot, i can short links of any website that uses Adlinkfly API Response.\n\nJust send your link i will give you shortened link.")
 
 # Getting url using regex and trying to call convert function that is defined above
 @app.on_message(filters.regex(r'https?://[^\s]+') & filters.private)
-async def shortener(event):
+async def shortener(bot, event):
     url = message.matches[0].group(0)
     try:
         short_url = await convert(url)
