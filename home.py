@@ -38,18 +38,18 @@ async def convert(link):
 
 # Start message for welcome 
 @app.on_message(filters.command('start') & filters.private)
-async def start(bot, message : msg):
-    await msg.reply(
-        f"Hello {msg.chat.first_name},\n"
+async def start(bot, message):
+    await message.reply(
+        f"Hello {message.chat.first_name},\n"
         "I am multi shortener bot, i can short links of any website that uses Adlinkfly API Response.\n\nJust send your link i will give you shortened link.")
 
 # Getting url using regex and trying to call convert function that is defined above
 @app.on_message(filters.regex(r'https?://[^\s]+') & filters.private)
-async def shortener(bot, message : msg):
+async def shortener(bot, message):
     url = message.matches[0].group(0)
     try:
         short_url = await convert(url)
-        await msg.reply(f"Successfully generated your short link 👉 `{short_url}`,\n\n__Tap on link to copy it__")
+        await message.reply(f"Successfully generated your short link 👉 `{short_url}`,\n\n__Tap on link to copy it__")
     except Exception as e:
         await message.reply(f"An error occurred: `{str(e)}`, contact @pyroowner for support.")
 
