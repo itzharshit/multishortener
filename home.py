@@ -39,7 +39,7 @@ async def convert(link):
 # Start message for welcome 
 @app.on_message(filters.command('start') & filters.private)
 async def start(bot, event):
-    await event.send_message(
+    await bot.send_message(
         f"Hello {event.chat.first_name},\n"
         "I am multi shortener bot, i can short links of any website that uses Adlinkfly API Response.\n\nJust send your link i will give you shortened link.")
 
