@@ -12,6 +12,7 @@ API_HASH = environ.get('API_HASH')
 BOT_TOKEN = environ.get('BOT_TOKEN')
 SITE_URL = environ.get('SITE_URL')
 API_KEY = environ.get('API_KEY')
+USER_ID = environ.get('USER_ID')
 
 # intialising logging
 logging.basicConfig(
@@ -27,7 +28,7 @@ app = Client(
     api_hash=API_HASH
 )    
 
-# Defining function for shortening links
+# declaring some local variables 
 s = pyshorteners.Shortener(api_key='API_KEY', user_id='USER_ID', domain='SITE_URL', group_id=12, type='int')
 
 # Start message for welcome 
